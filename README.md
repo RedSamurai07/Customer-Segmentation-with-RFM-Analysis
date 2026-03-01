@@ -39,14 +39,12 @@ To build a production-grade customer segmentation pipeline that goes beyond basi
 
 ### Tools
 
-Python: Used for data cleaning, advanced feature engineering, and machine learning. Libraries: Pandas, Numpy, Scikit-learn (K-Means, GMM, Agglomerative), Scipy (Stats), Matplotlib, Seaborn.
+1). Excel/CSV: Initial data inspection and output storage.
 
-SQL: Used for production-ready queries including Cohort Analysis, Window Functions for Pareto thresholds, and Rolling Retention.
+2). SQL: Used for production-ready queries including Cohort Analysis, Window Functions for Pareto thresholds, and Rolling Retention.
 
-Excel/CSV: Initial data inspection and output storage.
+3). Python: Used for data cleaning, advanced feature engineering, and machine learning. Libraries: Pandas, Numpy, Scikit-learn (K-Means, GMM, Agglomerative), Scipy (Stats), Matplotlib, Seaborn.
 
-Tableau: Visualization for the final retail data.
-  
 ### Analysis
 **Python**
 
@@ -2374,10 +2372,6 @@ GROUP BY Segment
 ORDER BY Total_Revenue DESC;
 ```
 <img width="1254" height="353" alt="image" src="https://github.com/user-attachments/assets/979f7fcc-4515-489c-88d9-19b0613c5efa" /><img width="409" height="301" alt="image" src="https://github.com/user-attachments/assets/6235e861-cdd8-4aef-a21e-ed2c98fa793d" />
-
-
-**Tableau**
-
 
 
 ### Insights
