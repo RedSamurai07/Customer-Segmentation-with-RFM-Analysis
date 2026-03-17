@@ -1,4 +1,4 @@
-name: ML Model CI/CD
+name: Model CI/CD
 
 on:
   push:
