@@ -1,29 +1,49 @@
-from flask import Flask, request, jsonify
+import streamlit as st
 import pandas as pd
-import mlflow.pyfunc
 import os
+from train import preprocess_data, calculate_rfm, segment_customers
 
-app = Flask(__name__)
+st.set_page_config(page_title="Customer Segmentation", layout="wide")
 
-MODEL_PATH = "mlruns/0/" 
+st.title("Customer Segmentation with RFM Analysis")
 
-@app.route('/predict', methods=['POST'])
-def predict():
+st.write("""
+Upload your transaction dataset to perform RFM (Recency, Frequency, Monetary) analysis and segment your customers into Top, Middle, and Low tiers.
+""")
+
+uploaded_file = st.file_uploader("Upload an Excel or CSV file", type=["xlsx", "xls", "csv"])
+
+if uploaded_file is not None:
     try:
-        data = request.get_json()
-        df = pd.DataFrame(data)
-     
-        return jsonify({
-            "status": "success",
-            "message": "Customer Segmentation API is active. Send data for RFM scoring.",
-            "received_data_samples": len(df)
-        })
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+            
+        st.write("### Data Preview")
+        st.dataframe(df.head())
+        
+        if st.button("Run Segmentation"):
+            with st.spinner("Processing data and calculating RFM..."):
+                # Run the functions from train.py
+                df_clean = preprocess_data(df)
+                rfm = calculate_rfm(df_clean)
+                rfm_final = segment_customers(rfm)
+                
+                st.success("Segmentation complete!")
+                
+                st.write("### Segmentation Results")
+                st.dataframe(rfm_final)
+                
+                st.write("### Segment Summary")
+                summary = rfm_final.groupby('Segment').agg({
+                    'Recency': 'mean',
+                    'Frequency': 'mean',
+                    'MonetaryValue': ['mean', 'count']
+                }).round(1)
+                st.dataframe(summary)
+                
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
-
-@app.route('/health', methods=['GET'])
-def health():
-    return jsonify({"status": "healthy"})
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+        st.error(f"An error occurred during processing: {e}")
+else:
+    st.info("Please upload a dataset to begin. The dataset should contain columns like 'Customer ID', 'Quantity', 'Price', 'Invoice', and 'InvoiceDate'.")

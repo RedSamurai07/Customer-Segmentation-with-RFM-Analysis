@@ -1,6 +1,6 @@
 # Customer Segmentation with RFM Analysis
 
-![ML Model CI/CD](https://github.com/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/actions/workflows/deploy.yml/badge.svg)
+![Model CI/CD](https://github.com/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/actions/workflows/deploy.yml/badge.svg)
 
 ## Table of contents
 - [Project Overview](#project-overview)
