@@ -21,7 +21,7 @@ if uploaded_file is not None:
             df = pd.read_excel(uploaded_file)
             
         st.write("### Data Preview")
-        st.dataframe(df.head())
+        st.dataframe(df.head().astype(str))
         
         if st.button("Run Segmentation"):
             with st.spinner("Processing data and calculating RFM..."):
@@ -33,7 +33,7 @@ if uploaded_file is not None:
                 st.success("Segmentation complete!")
                 
                 st.write("### Segmentation Results")
-                st.dataframe(rfm_final)
+                st.dataframe(rfm_final.astype(str))
                 
                 st.write("### Segment Summary")
                 summary = rfm_final.groupby('Segment').agg({

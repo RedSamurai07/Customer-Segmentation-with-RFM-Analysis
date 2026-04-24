@@ -1,5 +1,1 @@
-# This file is used for installing system-level dependencies via apt-get in Streamlit Community Cloud.
-# Add packages here (one per line) if your project needs them.
-# Example: 
-# tesseract-ocr
-# libgl1-mesa-glx
+
