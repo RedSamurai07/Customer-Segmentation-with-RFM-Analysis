@@ -11,6 +11,8 @@
 - [Analysis](#analysis)
 - [Insights](insights)
 - [Recommendations](recommendations)
+- [Production Architecture & MLOps](#production-architecture--mlops)
+
 
 ### Project Overview
 This project involves a comprehensive analysis of the "Online Retail II" dataset, which contains transactions for a UK-based non-store online retail from 2009 to 2011. The goal is to perform advanced customer segmentation using RFM (Recency, Frequency, Monetary) analysis, advanced feature engineering, and multiple clustering algorithms to identify high-value customers and at-risk segments.
@@ -2416,3 +2418,13 @@ ORDER BY Total_Revenue DESC;
 
 - Guest Conversion: Since Guest transactions (Missing IDs) have lower AOV, offer a first-purchase discount for account creation to track these currently "invisible" customers.
 
+### Production Architecture & MLOps
+
+To demonstrate production readiness, this customer segmentation framework is fully productized and automated:
+
+- **Containerization**: Packaged with Docker for seamless replication across local and cloud environments.
+- **Cloud Deployment**: Hosted on an AWS EC2 instance running a Streamlit interactive dashboard.
+- **Experiment Tracking**: Integrated with an MLflow artifact registry to log customer segments and RFM parameters.
+- **CI/CD Pipeline**: Automated via GitHub Actions to execute syntax check and deployment workflows on every code push.
+
+👉 For the complete step-by-step technical setup, Dockerfiles, and cloud infrastructure configurations, read the full [Production Deployment Guide](DEPLOYMENT.md).
