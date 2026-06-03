@@ -17,6 +17,19 @@
 ### Project Overview
 This project involves a comprehensive analysis of the "Online Retail II" dataset, which contains transactions for a UK-based non-store online retail from 2009 to 2011. The goal is to perform advanced customer segmentation using RFM (Recency, Frequency, Monetary) analysis, advanced feature engineering, and multiple clustering algorithms to identify high-value customers and at-risk segments.
 
+
+### Production Architecture & MLOps
+
+To demonstrate production readiness, this customer segmentation framework is fully productized and automated:
+
+- **Containerization**: Packaged with Docker for seamless replication across local and cloud environments.
+- **Cloud Deployment**: Hosted on an AWS EC2 instance running a Streamlit interactive dashboard.
+- **Experiment Tracking**: Integrated with an MLflow artifact registry to log customer segments and RFM parameters.
+- **CI/CD Pipeline**: Automated via GitHub Actions to execute syntax check and deployment workflows on every code push.
+
+👉 For the complete step-by-step technical setup, Dockerfiles, and cloud infrastructure configurations, read the full [Production Deployment Guide](DEPLOYMENT.md).
+
+
 ### Executive Summary
 
 The analysis identified that the top 20% of customers generate 77.26% of total revenue, closely following the Pareto Principle. We uncovered significant data quality issues, including anomalous negative prices and partial month biases. By engineering advanced features like Purchase Regularity and Return Rate, we differentiated standard buyers from wholesale and erratic shoppers. A Weighted RFM Model (30% R, 30% F, 40% M) proved most effective for segmenting the 5,942 unique customers into actionable groups such as 'Champions', 'At Risk', and 'Loyal'.
@@ -2417,14 +2430,3 @@ ORDER BY Total_Revenue DESC;
 - Inventory for Q4: Given the strong Q4 seasonal preference found in 'Loyal' segments, increase stock depth for top-diversity products in September.
 
 - Guest Conversion: Since Guest transactions (Missing IDs) have lower AOV, offer a first-purchase discount for account creation to track these currently "invisible" customers.
-
-### Production Architecture & MLOps
-
-To demonstrate production readiness, this customer segmentation framework is fully productized and automated:
-
-- **Containerization**: Packaged with Docker for seamless replication across local and cloud environments.
-- **Cloud Deployment**: Hosted on an AWS EC2 instance running a Streamlit interactive dashboard.
-- **Experiment Tracking**: Integrated with an MLflow artifact registry to log customer segments and RFM parameters.
-- **CI/CD Pipeline**: Automated via GitHub Actions to execute syntax check and deployment workflows on every code push.
-
-👉 For the complete step-by-step technical setup, Dockerfiles, and cloud infrastructure configurations, read the full [Production Deployment Guide](DEPLOYMENT.md).
