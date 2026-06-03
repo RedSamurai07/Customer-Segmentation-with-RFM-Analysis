@@ -104,3 +104,6 @@ docker run -d \
 3. **Verify MLflow Experiment Logs**
    Access the MLflow tracking dashboard to view experiment runs and logged RFM metrics:
    `http://<EC2_PUBLIC_IP>:8000`
+
+## CI/CD Pipeline Status
+The operational integrity of the master codebase is continuously protected via automated integration testing gates:
