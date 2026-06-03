@@ -1,0 +1,14 @@
+# AWS Keys and Secrets
+segment-key.pem
+*.pem
+.env
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating system files
+.DS_Store
+Thumbs.db
