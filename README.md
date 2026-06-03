@@ -11,8 +11,6 @@
 - [Analysis](#analysis)
 - [Insights](insights)
 - [Recommendations](recommendations)
-- [Production Architecture & MLOps](#production-architecture--mlops)
-
 
 ### Project Overview
 This project involves a comprehensive analysis of the "Online Retail II" dataset, which contains transactions for a UK-based non-store online retail from 2009 to 2011. The goal is to perform advanced customer segmentation using RFM (Recency, Frequency, Monetary) analysis, advanced feature engineering, and multiple clustering algorithms to identify high-value customers and at-risk segments.
