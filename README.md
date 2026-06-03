@@ -4,6 +4,7 @@
 
 ## Table of contents
 - [Project Overview](#project-overview)
+- [Production Architecture & ML Ops](#production-architecture)
 - [Executive Summary](#executive-summary)
 - [Goal](goal)
 - [Data Structure](data-structure)
@@ -16,7 +17,7 @@
 This project involves a comprehensive analysis of the "Online Retail II" dataset, which contains transactions for a UK-based non-store online retail from 2009 to 2011. The goal is to perform advanced customer segmentation using RFM (Recency, Frequency, Monetary) analysis, advanced feature engineering, and multiple clustering algorithms to identify high-value customers and at-risk segments.
 
 
-### Production Architecture & MLOps
+### Production Architecture
 
 To demonstrate production readiness, this customer segmentation framework is fully productized and automated:
 
