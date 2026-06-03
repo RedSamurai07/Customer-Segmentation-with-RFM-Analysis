@@ -106,4 +106,6 @@ docker run -d \
    `http://<EC2_PUBLIC_IP>:8000`
 
 ## CI/CD Pipeline Status
-The operational integrity of the master codebase is continuously protected via automated integration testing gates: ![Model CI/CD](https://github.com/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/actions/workflows/deploy.yml/badge.svg)
+The operational integrity of the master codebase is continuously protected via automated integration testing gates: 
+
+![Model CI/CD](https://github.com/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/actions/workflows/deploy.yml/badge.svg)
