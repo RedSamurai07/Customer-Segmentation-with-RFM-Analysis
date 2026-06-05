@@ -16,6 +16,33 @@
 ### Project Overview
 This project involves a comprehensive analysis of the "Online Retail II" dataset, which contains transactions for a UK-based non-store online retail from 2009 to 2011. The goal is to perform advanced customer segmentation using RFM (Recency, Frequency, Monetary) analysis, advanced feature engineering, and multiple clustering algorithms to identify high-value customers and at-risk segments.
 
+### Project Architecture
+
+```mermaid
+graph LR
+    subgraph Development [1. Data & Modeling]
+        A[online_retail_II.xlsx Data] --> B[Hypothesis Testing & Statsmodels]
+        B --> C[Machine Learning / Deep Learning Models]
+    end
+
+    subgraph Tracking [2. Experimentation]
+        C --> D((MLflow Tracking))
+    end
+
+    subgraph DevOps [3. CI/CD & Containers]
+        D --> E[GitHub Actions CI/CD]
+        E --> F[Docker Containerization]
+    end
+
+    subgraph Deployment [4. Production]
+        F --> G[AWS Cloud Deployment]
+    end
+
+    style D fill:#012A4A,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#2671E5,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#0db7ed,stroke:#333,stroke-width:2px,color:#fff
+    style G fill:#FF9900,stroke:#333,stroke-width:2px,color:#fff
+```
 
 ### Production Architecture
 
