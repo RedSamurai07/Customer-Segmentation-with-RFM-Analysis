@@ -2435,9 +2435,9 @@ ORDER BY Total_Revenue DESC;
 <img width="1254" height="353" alt="image" src="https://github.com/user-attachments/assets/979f7fcc-4515-489c-88d9-19b0613c5efa" /><img width="409" height="301" alt="image" src="https://github.com/user-attachments/assets/6235e861-cdd8-4aef-a21e-ed2c98fa793d" />
 
 
-**Tableau**
+**Tableau Dashboard**
 
-
+<img width="858" height="543" alt="image" src="https://github.com/user-attachments/assets/90ce0279-31c7-4a5e-8418-977953601a36" />
 
 ### Insights
 
