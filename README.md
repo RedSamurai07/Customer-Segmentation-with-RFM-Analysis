@@ -2437,7 +2437,8 @@ ORDER BY Total_Revenue DESC;
 
 **Tableau Dashboard**
 
-<img width="858" height="543" alt="image" src="https://github.com/user-attachments/assets/90ce0279-31c7-4a5e-8418-977953601a36" />
+<img width="1164" height="735" alt="Customer_Segmentation Dashboard" src="https://github.com/user-attachments/assets/438e5250-fbcd-4745-b081-77b076ffacc5" />
+
 
 ### Insights
 
