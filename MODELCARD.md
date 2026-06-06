@@ -8,7 +8,7 @@
 |---|---|
 | **Framework Name** | Customer Segmentation at Scale — Multi-Algorithm RFM Framework |
 | **Python Version** | 3.10 |
-| **Analysis Date** | June 2026 |
+| **Analysis Date** | March 2026 |
 | **Primary Method** | Weighted RFM Scoring (R=0.3, F=0.3, M=0.4) |
 | **Supporting Methods** | K-Means, Agglomerative Clustering, GMM, DBSCAN |
 | **Primary Metric** | Silhouette Score (cluster quality) |
@@ -251,6 +251,30 @@ Tracks customer movement between segments across quarters using a migration matr
 - **Partial Months:** First and last months of the dataset may be partial — reference date selection (2011-12-10) mitigates this for recency calculations.
 - **Single-Channel:** Data covers only online retail transactions; in-store or phone purchases are not represented, potentially misclassifying omnichannel customers as lower-value.
 
+---
+
+## 15. Infrastructure & Tools
+
+| Category | Tool |
+|---|---|
+| Language | Python 3.10 |
+| Data Processing | Pandas, NumPy |
+| Clustering | Scikit-learn (K-Means, DBSCAN, AgglomerativeClustering, GMM) |
+| Dimensionality Reduction | PCA (scikit-learn), UMAP (umap-learn, optional) |
+| Statistical Tests | SciPy (Mann-Whitney U, Kruskal-Wallis, Chi-Square), Statsmodels (Tukey HSD) |
+| Survival Analysis | lifelines (KaplanMeierFitter) — optional |
+| CLV Prediction | lifetimes (BG/NBD, Gamma-Gamma) — optional |
+| Market Basket | mlxtend (Apriori, Association Rules) — optional |
+| Visualisation | Matplotlib, Seaborn |
+| SQL Engine | Google BigQuery (BigQuery Studio) |
+| Frontend | Streamlit |
+| Experiment Tracking | MLflow (SQLite backend) |
+| Testing | Pytest |
+| CI/CD | GitHub Actions |
+| Containerisation | Docker |
+| Cloud Infrastructure | AWS EC2 |
+| Version Control | Git |
+---
 
 ## 15. Final Decision Summary
 
@@ -284,27 +308,3 @@ PRODUCTION RECOMMENDATIONS:
 • Monitor Champions → At_Risk migration rate monthly
 ══════════════════════════════════════════════════════════════
 ```
-
----
-## 16. Infrastructure & Tools
-
-| Category | Tool |
-|---|---|
-| Language | Python 3.10 |
-| Data Processing | Pandas, NumPy |
-| Clustering | Scikit-learn (K-Means, DBSCAN, AgglomerativeClustering, GMM) |
-| Dimensionality Reduction | PCA (scikit-learn), UMAP (umap-learn, optional) |
-| Statistical Tests | SciPy (Mann-Whitney U, Kruskal-Wallis, Chi-Square), Statsmodels (Tukey HSD) |
-| Survival Analysis | lifelines (KaplanMeierFitter) — optional |
-| CLV Prediction | lifetimes (BG/NBD, Gamma-Gamma) — optional |
-| Market Basket | mlxtend (Apriori, Association Rules) — optional |
-| Visualisation | Matplotlib, Seaborn |
-| SQL Engine | Google BigQuery (BigQuery Studio) |
-| Frontend | Streamlit |
-| Experiment Tracking | MLflow (SQLite backend) |
-| Testing | Pytest |
-| CI/CD | GitHub Actions |
-| Containerisation | Docker |
-| Cloud Infrastructure | AWS EC2 |
-| Version Control | Git |
----
