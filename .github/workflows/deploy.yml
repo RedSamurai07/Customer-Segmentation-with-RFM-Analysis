@@ -10,31 +10,38 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.9
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest  # Adding pytest for local tests
-    - name: Run code check (Linting)
+        pip install pytest pytest-cov
+
+    - name: Run tests with coverage
       run: |
-        # Simple syntax check
-        python -m py_compile train.py
-    - name: Run Sample Test
-      run: |
-        # Dummy test to ensure the script can at least be imported/initialized
-        python -c "import train; print('Import successful')"
+        pytest tests/test_train.py --cov=train --cov-report=xml --cov-report=term-missing
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
+        flags: unittests
+        name: rfm-coverage
+        fail_ci_if_error: false
 
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build Docker Image
       run: |
         docker build -t rfm-customer-segmentation:latest .
@@ -42,9 +49,3 @@ jobs:
       run: |
         echo "Scanning image for vulnerabilities..."
         # In a real scenario, you'd use a tool like Trivy or Snyk here
-    
-  # Note: Actual deployment to AWS EC2 would require AWS credentials/secrets
-  # and could be added here using a step like:
-  # - name: Deploy to EC2
-  #   run: |
-  #     ssh -i key.pem ec2-user@your-ip "docker pull ... && docker run ..."
