@@ -2,9 +2,9 @@
 
 ![Model CI/CD](https://github.com/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/actions/workflows/deploy.yml/badge.svg)
 
-[![codecov](https://codecov.io/gh/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/branch/main/graph/badge.svg)](https://codecov.io/gh/RedSamurai07/Customer-Segmentation-with-RFM-Analysis)
+[![codecov](https://codecov.io/gh/RedSamurai07/Customer-Segmentation-with-RFM-Analysis/graph/badge.svg?token=AEECP4POTK)](https://codecov.io/gh/RedSamurai07/Customer-Segmentation-with-RFM-Analysis)
 
-
+[Live Link](https://customer-segmentation-with-rfm-analysis-dhwjmnjkzp7jzsc3przfjk.streamlit.app/)
 
 ## Table of contents
 - [Project Overview](#project-overview)
