@@ -99,7 +99,12 @@ Extended RFM (8 features) achieved higher Silhouette scores than Base RFM (3 fea
 
 ---
 
-## 5. RFM Scoring & Segmentation
+## 5. Methodology & Pipeline Architecture
+
+
+
+
+## 6. RFM Scoring & Segmentation
 
 ### Quintile Scoring
 | Dimension | Scoring Logic |
@@ -129,7 +134,7 @@ Weighted_RFM = (R_Score × 0.3) + (F_Score × 0.3) + (M_Score × 0.4)
 
 ---
 
-## 6. Segment Results
+## 7. Segment Results
 
 **5,878 total customers segmented across 9 tiers:**
 
@@ -154,7 +159,7 @@ Weighted_RFM = (R_Score × 0.3) + (F_Score × 0.3) + (M_Score × 0.4)
 
 ---
 
-## 7. Pareto Analysis
+## 8. Pareto Analysis
 
 **Key finding:** The top 20% of customers generate **77.26% of total revenue**, closely following the Pareto Principle.
 
@@ -163,7 +168,7 @@ Weighted_RFM = (R_Score × 0.3) + (F_Score × 0.3) + (M_Score × 0.4)
 
 ---
 
-## 8. Clustering Algorithm Comparison
+## 9. Clustering Algorithm Comparison
 
 All algorithms evaluated on standard-scaled base RFM (Recency, Frequency, Monetary) with K=4:
 
@@ -180,7 +185,7 @@ K-Means was run 50 times with different random seeds per K value. Adjusted Rand 
 
 ---
 
-## 9. Hypothesis Testing Results
+## 10. Hypothesis Testing Results
 
 ### Test 1 — Mann-Whitney U: Champions vs At-Risk Monetary Value
 - **Result:** p < 0.001, Cohen's d = 0.563
@@ -196,7 +201,7 @@ K-Means was run 50 times with different random seeds per K value. Adjusted Rand 
 
 ---
 
-## 10. Customer Lifetime Value (BG/NBD + Gamma-Gamma)
+## 11. Customer Lifetime Value (BG/NBD + Gamma-Gamma)
 
 The framework supports CLV prediction using probabilistic models (requires `lifetimes` library):
 
@@ -208,7 +213,7 @@ The framework supports CLV prediction using probabilistic models (requires `life
 
 ---
 
-## 11. Survival Analysis (Kaplan-Meier)
+## 12. Survival Analysis (Kaplan-Meier)
 
 - **Churn definition:** Last purchase > 90 days before reference date
 - **Output:** Median customer survival time in days
@@ -218,7 +223,7 @@ The framework supports CLV prediction using probabilistic models (requires `life
 
 ---
 
-## 12. Quarterly Segment Migration (Q1 → Q4 2010)
+## 13. Quarterly Segment Migration (Q1 → Q4 2010)
 
 Tracks customer movement between segments across quarters using a migration matrix. Key outputs:
 - Retention rate per segment (% staying in same segment Q1 → Q4)
@@ -226,7 +231,7 @@ Tracks customer movement between segments across quarters using a migration matr
 
 ---
 
-## 13. Business Action Plan by Segment
+## 14. Business Action Plan by Segment
 
 | Segment | Strategy | Action | Target Metric |
 |---|---|---|---|
@@ -241,7 +246,7 @@ Tracks customer movement between segments across quarters using a migration matr
 
 ---
 
-## 14. Ethical Considerations & Limitations
+## 15. Ethical Considerations & Limitations
 
 - **Temporal Drift:** The dataset covers 2009–2011. UK retail patterns have changed significantly — retraining on recent data is essential before production use.
 - **Guest Transactions:** Transactions with missing Customer IDs cannot be assigned to segments, creating an invisible customer pool. These guests show lower AOV and may represent an untapped conversion opportunity.
@@ -253,7 +258,7 @@ Tracks customer movement between segments across quarters using a migration matr
 
 ---
 
-## 15. Infrastructure & Tools
+## 16. Infrastructure & Tools
 
 | Category | Tool |
 |---|---|
@@ -276,7 +281,7 @@ Tracks customer movement between segments across quarters using a migration matr
 | Version Control | Git |
 ---
 
-## 15. Final Decision Summary
+## 17. Final Decision Summary
 
 ```
 ══════════════════════════════════════════════════════════════
