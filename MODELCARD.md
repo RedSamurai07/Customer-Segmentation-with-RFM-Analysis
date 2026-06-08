@@ -104,7 +104,7 @@ Extended RFM (8 features) achieved higher Silhouette scores than Base RFM (3 fea
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        1. DATA LAYER                                │
-│  online_retail_II.xlsx (Sheet 2009-10 + Sheet 2010-11)             │
+│  online_retail_II.xlsx (Sheet 2009-10 + Sheet 2010-11)              │
 │         │                                                           │
 │         ▼  pd.concat([df_1, df_2])                                  │
 │  ~1,000,000+ raw transactions                                       │
@@ -135,24 +135,25 @@ Extended RFM (8 features) achieved higher Silhouette scores than Base RFM (3 fea
 │  ├── Weekend_Purchase_Ratio                                         │
 │  └── Peak_Hour_Segment (Morning/Afternoon/Evening/Night)            │
 │                                                                     │
-│  Silhouette validation: extended > base  ✓                          │
+│  Silhouette validation: extended > base                             │
+│                                                                     │
 └──────────────────────────┬──────────────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────────────┐
 │              4. RFM SCORING & SEGMENTATION                          │
-│  ├── Quantile scoring (R: 4→1, F/M: 1→4) → Top / Middle / Low      │
-│  └── Weighted RFM (30% R, 30% F, 40% M) → Champions / At Risk /    │
+│  ├── Quantile scoring (R: 4→1, F/M: 1→4) → Top / Middle / Low       │
+│  └── Weighted RFM (30% R, 30% F, 40% M) → Champions / At Risk /     │
 │      Loyal / Potential Loyalists / Lost                             │
 └──────────────────────────┬──────────────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────────────┐
 │            5. MULTI-ALGORITHM CLUSTERING ENGINE                     │
 │  StandardScaler → feature matrix                                    │
-│  ┌──────────┐ ┌─────────┐ ┌─────────────┐ ┌────────┐              │
-│  │ K-Means  │ │   GMM   │ │Agglomerative│ │ DBSCAN │              │
-│  │ k=4      │ │ k=4     │ │ ward, k=4   │ │ ε=0.5  │              │
-│  └──────────┘ └─────────┘ └─────────────┘ └────────┘              │
-│  Evaluation: Silhouette, Davies-Bouldin, Calinski-Harabasz, ARI    │
+│  ┌──────────┐ ┌─────────┐ ┌─────────────┐ ┌────────┐                │
+│  │ K-Means  │ │   GMM   │ │Agglomerative│ │ DBSCAN │                │
+│  │ k=4      │ │ k=4     │ │ ward, k=4   │ │ ε=0.5  │                │
+│  └──────────┘ └─────────┘ └─────────────┘ └────────┘                │
+│  Evaluation: Silhouette, Davies-Bouldin, Calinski-Harabasz, ARI     │
 │  Visualisation: PCA 2D + UMAP 2D                                    │
 └──────────────────────────┬──────────────────────────────────────────┘
                            │
@@ -166,7 +167,7 @@ Extended RFM (8 features) achieved higher Silhouette scores than Base RFM (3 fea
                            │
 ┌──────────────────────────▼──────────────────────────────────────────┐
 │            7. ADVANCED ANALYTICS (optional modules)                 │
-│  ├── Survival Analysis: Kaplan-Meier, BG/NBD, Gamma-Gamma          │
+│  ├── Survival Analysis: Kaplan-Meier, BG/NBD, Gamma-Gamma           │
 │  ├── Market Basket Analysis: Apriori + Association Rules            │
 │  └── UMAP visualisation                                             │
 └──────────────────────────┬──────────────────────────────────────────┘
