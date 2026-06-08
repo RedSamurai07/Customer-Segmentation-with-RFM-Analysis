@@ -100,7 +100,105 @@ Extended RFM (8 features) achieved higher Silhouette scores than Base RFM (3 fea
 ---
 
 ## 5. Methodology & Pipeline Architecture
-
+ 
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        1. DATA LAYER                                │
+│  online_retail_II.xlsx (Sheet 2009-10 + Sheet 2010-11)             │
+│         │                                                           │
+│         ▼  pd.concat([df_1, df_2])                                  │
+│  ~1,000,000+ raw transactions                                       │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│                   2. DATA QUALITY AUDIT                             │
+│  ├── 5-class transaction classifier (classify_row)                  │
+│  │     Valid / Cancellation / Negative Price / Free Sample /        │
+│  │     Return Without C-Flag                                        │
+│  ├── Missing Customer ID pattern analysis                           │
+│  ├── Partial month bias detection & reference date anchoring        │
+│  └── Return behaviour profiling (top returners + products)          │
+│                                                                     │
+│  Filter: Valid_Purchase + Has_CustomerID + Qty>0 + Price>0          │
+│  → ~400,000 clean transactions, 5,942 unique customers              │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│                3. ADVANCED FEATURE ENGINEERING                      │
+│  Base RFM: Recency, Frequency, Monetary                             │
+│  Extended:                                                          │
+│  ├── Avg_Order_Value                                                │
+│  ├── Purchase_Regularity_Std (inter-purchase std)                   │
+│  ├── Return_Rate (from pre-filter cancellation data)                │
+│  ├── Product_Diversity (unique SKUs)                                │
+│  ├── Best_Quarter (peak revenue quarter)                            │
+│  ├── Weekend_Purchase_Ratio                                         │
+│  └── Peak_Hour_Segment (Morning/Afternoon/Evening/Night)            │
+│                                                                     │
+│  Silhouette validation: extended > base  ✓                          │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│              4. RFM SCORING & SEGMENTATION                          │
+│  ├── Quantile scoring (R: 4→1, F/M: 1→4) → Top / Middle / Low      │
+│  └── Weighted RFM (30% R, 30% F, 40% M) → Champions / At Risk /    │
+│      Loyal / Potential Loyalists / Lost                             │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│            5. MULTI-ALGORITHM CLUSTERING ENGINE                     │
+│  StandardScaler → feature matrix                                    │
+│  ┌──────────┐ ┌─────────┐ ┌─────────────┐ ┌────────┐              │
+│  │ K-Means  │ │   GMM   │ │Agglomerative│ │ DBSCAN │              │
+│  │ k=4      │ │ k=4     │ │ ward, k=4   │ │ ε=0.5  │              │
+│  └──────────┘ └─────────┘ └─────────────┘ └────────┘              │
+│  Evaluation: Silhouette, Davies-Bouldin, Calinski-Harabasz, ARI    │
+│  Visualisation: PCA 2D + UMAP 2D                                    │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│            6. STATISTICAL SEGMENT VALIDATION                        │
+│  ├── Kruskal-Wallis H-test (cross-cluster RFM distributions)        │
+│  ├── Mann-Whitney U (pairwise segment comparisons)                  │
+│  ├── Chi-square (categorical features across segments)              │
+│  └── Tukey HSD post-hoc (which pairs differ)                        │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│            7. ADVANCED ANALYTICS (optional modules)                 │
+│  ├── Survival Analysis: Kaplan-Meier, BG/NBD, Gamma-Gamma          │
+│  ├── Market Basket Analysis: Apriori + Association Rules            │
+│  └── UMAP visualisation                                             │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│             8. EXPERIMENT TRACKING (MLflow)                         │
+│  Experiment: "Customer_Segmentation"                                │
+│  Logs: params (num_customers, data_source)                          │
+│        metrics (avg_recency, avg_frequency, avg_monetary)           │
+│        artifacts (segmentation_summary.csv)                         │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────────────┐
+│          9. SERVING, CONTAINERISATION & CI/CD                       │
+│                                                                     │
+│  Docker (python:3.9-slim)                                           │
+│  ├── Installs: pandas, numpy, scikit-learn, mlflow,                 │
+│  │             openpyxl, streamlit, flask, lifelines, mlxtend       │
+│  ├── EXPOSE 5000 (Flask API) + 8000 (MLflow UI)                     │
+│  └── CMD: python train.py && python app.py & mlflow ui              │
+│                                                                     │
+│  GitHub Actions (.github/workflows/deploy.yml)                      │
+│  ├── Trigger: push to main                                          │
+│  ├── Steps: checkout → pip install → pytest                         │
+│  └── Badge: [![Model CI/CD] passing]                                │
+│                                                                     │
+│  Streamlit Cloud ──► Live public dashboard                          │
+│  AWS EC2 (Ubuntu) ──► Flask REST API + MLflow UI                    │
+└─────────────────────────────────────────────────────────────────────┘
+```
+ 
+---
 
 
 
